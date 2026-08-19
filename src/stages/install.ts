@@ -7,14 +7,17 @@ export const install = async () => {
 
 	core.info("Installing Attic");
 
+	const installCommand = core.getInput("install-command");
 	const inputsFrom = core.getInput("inputs-from");
 
+	const execInstall = (() => {
+		if (installCommand) return exec(installCommand);
+		if (inputsFrom) exec("nix", ["profile", "add", "--inputs-from", inputsFrom, "nixpkgs#attic-client"]);
+		return exec("nix", ["profile", "add", "github:NixOS/nixpkgs/nixpkgs-unstable#attic-client"]);
+	})();
+
 	try {
-		if (inputsFrom) {
-			await exec("nix", ["profile", "add", "--inputs-from", inputsFrom, "nixpkgs#attic-client"]);
-		} else {
-			await exec("nix", ["profile", "add", "github:NixOS/nixpkgs/nixpkgs-unstable#attic-client"]);
-		}
+		await execInstall;
 	} catch (e) {
 		core.setFailed(`Action failed with error: ${e}`);
 	}

@@ -13,6 +13,9 @@ inputs:
   cache:
     description: "Attic cache name"
     required: true
+  install-command:
+    description: "Custom command to use to install Attic"
+    required: false
   inputs-from:
     description: "Path to get the Nixpkgs flake input from instead of `github:NixOS/nixpkgs/nixpkgs-unstable`"
     required: false

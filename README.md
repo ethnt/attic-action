@@ -29,6 +29,10 @@ The name of the Attic cache.
 
 The authorization token to provide to Attic (**optional**).
 
+### `install-command`
+
+Use a custom command to install Attic (**optional**). This is mutually exclusive with `inputs-from`.
+
 ### `inputs-from`
 
 Path to get the Nixpkgs flake input from instead of `github:NixOS/nixpkgs/nixpkgs-unstable` when installing Attic (**optional**).
