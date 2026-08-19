@@ -10,7 +10,7 @@ export const INTERNAL_DRY_RUN = ["true", "1", "yes"].includes(
 export const saveStorePaths = async () => {
 	await exec("sh", [
 		"-c",
-		"nix path-info --all --json --json-format 2 > ${RUNNER_TEMP:-/tmp}/attic-action-store-paths",
+		"nix path-info --all --json > ${RUNNER_TEMP:-/tmp}/attic-action-store-paths",
 	]);
 };
 
